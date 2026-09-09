@@ -6,9 +6,10 @@ export function printResult(result: CheckResult, json: boolean): void {
     return;
   }
 
-  console.log(`URL:        ${result.url}`);
+  console.log(`\nFlowLens\n────────\nURL:        ${result.url}`);
+
   if (result.error) {
-    console.log(`Status:     ERROR`);
+    console.log('Status:     ERROR');
     console.log(`Error:      ${result.error}`);
     return;
   }
@@ -16,6 +17,8 @@ export function printResult(result: CheckResult, json: boolean): void {
   console.log(`Status:     ${result.status} ${result.ok ? 'OK' : 'FAIL'}`);
   console.log(`Latency:    ${result.latencyMs} ms`);
   console.log(`Content:    ${result.contentType ?? 'unknown'}`);
-  console.log(`Redirected: ${result.redirected ? 'yes' : 'no'}`);
+  console.log(`Server:     ${result.server ?? 'unknown'}`);
+  console.log(`Redirects:  ${result.redirectCount}`);
+
   if (result.redirected) console.log(`Final URL:  ${result.finalUrl}`);
 }
