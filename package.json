@@ -1,15 +1,36 @@
 {
   "name": "flowlens",
   "version": "0.1.0",
-  "description": "Fast, developer-friendly website and API health analyzer.",
+  "description": "A fast CLI for checking website and API availability, latency, redirects, and response metadata.",
   "type": "module",
-  "bin": { "flowlens": "dist/index.js" },
+  "bin": {
+    "flowlens": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "check": "npm run build && npm test",
     "test": "npm run build && node --test test/*.test.js"
   },
-  "engines": { "node": ">=20" },
-  "devDependencies": { "typescript": "^5.6.3" },
-  "license": "MIT"
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "monitoring",
+    "uptime",
+    "http",
+    "api",
+    "cli",
+    "performance",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
 }
