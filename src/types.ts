@@ -2,6 +2,7 @@ export interface CheckResult {
   url: string;
   finalUrl: string;
   status: number;
+  statusText: string;
   ok: boolean;
   latencyMs: number;
   contentType: string | null;
