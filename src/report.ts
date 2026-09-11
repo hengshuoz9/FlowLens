@@ -14,7 +14,8 @@ export function printResult(result: CheckResult, json: boolean): void {
     return;
   }
 
-  console.log(`Status:     ${result.status} ${result.ok ? 'OK' : 'FAIL'}`);
+  const statusLabel = result.statusText ? ` ${result.statusText}` : '';
+  console.log(`Status:     ${result.status}${statusLabel} ${result.ok ? 'OK' : 'FAIL'}`);
   console.log(`Latency:    ${result.latencyMs} ms`);
   console.log(`Content:    ${result.contentType ?? 'unknown'}`);
   console.log(`Server:     ${result.server ?? 'unknown'}`);
