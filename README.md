@@ -10,6 +10,7 @@ It checks HTTP status, latency, redirects, content type, server metadata, and re
 
 - Fast CLI with no runtime dependencies
 - HTTP `GET` and `HEAD` checks
+- HTTP status text included in results
 - Latency measurement in milliseconds
 - Manual redirect tracking with a safety limit
 - Timeout handling with a non-zero exit code
@@ -105,6 +106,7 @@ With `--json`, the result is structured for downstream tooling:
   "url": "https://example.com",
   "finalUrl": "https://example.com/",
   "status": 200,
+  "statusText": "OK",
   "ok": true,
   "latencyMs": 142,
   "contentType": "text/html; charset=UTF-8",
