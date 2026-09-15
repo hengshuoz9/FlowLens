@@ -35,6 +35,19 @@ test('returns a successful health check', async (t) => {
   assert.ok(result.latencyMs >= 0);
 });
 
+test('sends the current FlowLens user agent', async (t) => {
+  const { server, url } = await startServer((request, response) => {
+    assert.equal(request.headers['user-agent'], 'FlowLens/0.2.0');
+    response.end('ok');
+  });
+  t.after(() => server.close());
+
+  const result = await checkUrl(url, { timeoutMs: 2000 });
+
+  assert.equal(result.status, 200);
+  assert.equal(result.ok, true);
+});
+
 test('preserves non-2xx status information', async (t) => {
   const { server, url } = await startServer((_, response) => {
     response.writeHead(404, { 'content-type': 'text/plain' });
