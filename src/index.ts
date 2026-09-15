@@ -2,6 +2,7 @@
 import { checkUrl } from './checker.js';
 import { printResult } from './report.js';
 
+const VERSION = '0.2.0';
 const args = process.argv.slice(2);
 const json = args.includes('--json');
 const headers = args.includes('--headers');
@@ -11,8 +12,11 @@ const method = methodArg?.split('=')[1]?.toUpperCase();
 const timeoutMs = timeoutArg ? Number(timeoutArg.split('=')[1]) : 10000;
 const url = args.find((arg) => !arg.startsWith('--'));
 
-if (!url || args.includes('--help') || args.includes('-h')) {
-  console.log(`FlowLens — fast website and API health checks\n\nUsage:\n  flowlens <url> [options]\n\nOptions:\n  --json              Output machine-readable JSON\n  --headers           Include response headers\n  --method=GET|HEAD   HTTP method (default: GET)\n  --timeout=10000     Timeout in milliseconds\n  -h, --help          Show help\n`);
+if (args.includes('--version') || args.includes('-v')) {
+  console.log(`FlowLens ${VERSION}`);
+  process.exitCode = 0;
+} else if (!url || args.includes('--help') || args.includes('-h')) {
+  console.log(`FlowLens — fast website and API health checks\n\nUsage:\n  flowlens <url> [options]\n\nOptions:\n  --json              Output machine-readable JSON\n  --headers           Include response headers\n  --method=GET|HEAD   HTTP method (default: GET)\n  --timeout=10000     Timeout in milliseconds\n  -v, --version       Show version\n  -h, --help          Show help\n`);
   process.exitCode = url ? 0 : 2;
 } else if (method && method !== 'GET' && method !== 'HEAD') {
   console.error('Invalid method. Use GET or HEAD.');
