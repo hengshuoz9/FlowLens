@@ -203,3 +203,7 @@ FlowLens makes outbound HTTP requests to URLs provided by the user. Do not use i
 ## License
 
 MIT © FlowLens contributors
+
+## Distribution
+
+The package metadata is prepared for npm distribution, including repository, homepage, and issue tracker links. The current CLI version is `0.2.0`.
