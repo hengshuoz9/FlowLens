@@ -17,6 +17,7 @@ It checks HTTP status, latency, redirects, content type, server metadata, and re
 - Human-readable terminal output
 - `--json` output for scripts and CI pipelines
 - Optional response headers with `--headers`
+- `--version` for quick CLI version checks
 - Node.js 20+
 - TypeScript source
 
@@ -50,6 +51,12 @@ Basic check:
 
 ```bash
 flowlens https://example.com
+```
+
+Show the installed CLI version:
+
+```bash
+flowlens --version
 ```
 
 JSON for automation:
@@ -196,3 +203,7 @@ FlowLens makes outbound HTTP requests to URLs provided by the user. Do not use i
 ## License
 
 MIT © FlowLens contributors
+
+## Distribution
+
+The package metadata is prepared for npm distribution, including repository, homepage, and issue tracker links. The current CLI version is `0.2.0`.
