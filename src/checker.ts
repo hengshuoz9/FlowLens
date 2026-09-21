@@ -1,8 +1,9 @@
 import type { CheckOptions, CheckResult } from './types.js';
 
 const MAX_REDIRECTS = 10;
+const FLOWLENS_VERSION = '0.2.0';
 const DEFAULT_HEADERS = {
-  'user-agent': 'FlowLens/0.1.0',
+  'user-agent': `FlowLens/${FLOWLENS_VERSION}`,
   accept: '*/*'
 };
 
@@ -50,7 +51,7 @@ export async function checkUrl(input: string, options: CheckOptions): Promise<Ch
     }
 
     const headers: Record<string, string> = {};
-    if (options.includeHeaders !== false) {
+    if (options.includeHeaders === true) {
       for (const [key, value] of response.headers) headers[key] = value;
     }
 
