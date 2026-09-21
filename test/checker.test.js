@@ -88,3 +88,20 @@ test('times out slow responses', async (t) => {
   assert.equal(result.ok, false);
   assert.match(result.error ?? '', /timed out/i);
 });
+
+test('only includes response headers when explicitly requested', async (t) => {
+  const { server, url } = await startServer((_, response) => {
+    response.setHeader('x-flowlens-test', 'enabled');
+    response.end('ok');
+  });
+  t.after(() => server.close());
+
+  const withoutHeaders = await checkUrl(url, { timeoutMs: 2000 });
+  assert.deepEqual(withoutHeaders.headers, {});
+
+  const withHeaders = await checkUrl(url, {
+    timeoutMs: 2000,
+    includeHeaders: true
+  });
+  assert.equal(withHeaders.headers['x-flowlens-test'], 'enabled');
+});
